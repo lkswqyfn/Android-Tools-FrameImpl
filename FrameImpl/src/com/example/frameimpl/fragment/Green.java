@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.example.frameimpl.R;
 
-public class Bule extends BaseFragment {
+public class Green extends BaseFragment {
 
 	private ImageView iv;
 
@@ -25,10 +25,8 @@ public class Bule extends BaseFragment {
 		Animation exitAnim = new TranslateAnimation(type2 , 0, type2, 1, type2, 0, type2, 0);
 		exitAnim.setDuration(300);
 		
-		BBaiduMap f = new BBaiduMap();
-//		Red f = new Red();
-//		Green f = new Green();
-		f.fragmentPendingTransition(enterAnim, exitAnim);
+		Bule f = new Bule();
+//		f.fragmentPendingTransition(enterAnim, exitAnim);
 		getActivity().ChangeView(f, R.id.ooxx, false, true);
 		
 //		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -43,7 +41,7 @@ public class Bule extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		iv = new ImageView(getActivity());
 		iv.setClickable(true);
-		iv.setBackgroundColor(Color.BLUE);
+		iv.setBackgroundColor(Color.GREEN);
 		return iv;
 	}
 
@@ -62,7 +60,7 @@ public class Bule extends BaseFragment {
 
 	@Override
 	public boolean OnBackPressed() {
-		System.out.println("bule");
+		System.out.println("green");
 		return super.OnBackPressed();
 	}
 

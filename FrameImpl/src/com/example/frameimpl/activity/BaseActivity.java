@@ -8,12 +8,14 @@ import android.view.WindowManager;
 import cn.smssdk.SMSSDK;
 import cn.yicha.applite.appmgr.UninstallCollectionInfoService;
 
+import com.baidu.mapapi.SDKInitializer;
+
 public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		initTheme();
 		super.onCreate(savedInstanceState);
-		
+
 		initActivity();
 		initView();
 		initData();
@@ -30,7 +32,7 @@ public abstract class BaseActivity extends FragmentActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setTheme(android.R.style.Theme_Light);
 	}
-	
+
 	/**
 	 * 初始化广播接收者和服务
 	 */
@@ -38,6 +40,7 @@ public abstract class BaseActivity extends FragmentActivity {
 		Intent service = new Intent(this, UninstallCollectionInfoService.class);
 		startService(service);
 		SMSSDK.initSDK(this, "2803bd5b9e8c", "c478bc614fe371a4cfa978fa65921554");
+		SDKInitializer.initialize(getApplicationContext());
 	}
 
 	/**
@@ -59,7 +62,6 @@ public abstract class BaseActivity extends FragmentActivity {
 	 * 初始化监听器适配器
 	 */
 	public abstract void initListener();
-
 
 	@Override
 	protected void onDestroy() {
