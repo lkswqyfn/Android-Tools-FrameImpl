@@ -1,11 +1,12 @@
 package com.example.frameimpl.activity;
 
-import cn.yicha.applite.appmgr.UninstallCollectionInfoService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 import android.view.WindowManager;
+import cn.smssdk.SMSSDK;
+import cn.yicha.applite.appmgr.UninstallCollectionInfoService;
 
 public abstract class BaseActivity extends FragmentActivity {
 	@Override
@@ -36,6 +37,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	private void initServiceNReceiver() {
 		Intent service = new Intent(this, UninstallCollectionInfoService.class);
 		startService(service);
+		SMSSDK.initSDK(this, "2803bd5b9e8c", "c478bc614fe371a4cfa978fa65921554");
 	}
 
 	/**

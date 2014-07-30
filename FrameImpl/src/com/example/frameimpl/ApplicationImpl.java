@@ -22,7 +22,7 @@ public class ApplicationImpl extends Application implements UncaughtExceptionHan
 
 	@Override
 	public void onCreate() {
-		Thread.setDefaultUncaughtExceptionHandler(this);
+//		Thread.setDefaultUncaughtExceptionHandler(this);
 		super.onCreate();
 		instance = this;
 		initLog();

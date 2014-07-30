@@ -37,12 +37,6 @@ public class UninstallCollectionInfoService extends Service {
 	}
 	
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		System.out.println("xcmsjcs");
-		return super.onStartCommand(intent, flags, startId);
-	}
-	
-	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
 	}
