@@ -33,4 +33,17 @@ public class FrameImplTest extends AndroidTestCase {
 			System.out.println(APNUtil.getAPNName(getContext()));
 			System.out.println(APNUtil.getProxyHost(getContext()));
 		}
+		
+		public void testDao(){
+			/*new Thread(){
+				public void run() {
+					LockDao.getInstance(getContext()).read();
+				};
+			}.start();
+			new Thread(){
+				public void run() {
+					LockDao.getInstance(getContext()).read();
+				};
+			}.start();*/
+		}
 }
