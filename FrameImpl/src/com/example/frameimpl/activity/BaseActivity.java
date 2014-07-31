@@ -8,8 +8,6 @@ import android.view.WindowManager;
 import cn.smssdk.SMSSDK;
 import cn.yicha.applite.appmgr.UninstallCollectionInfoService;
 
-import com.baidu.mapapi.SDKInitializer;
-
 public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public abstract class BaseActivity extends FragmentActivity {
 		Intent service = new Intent(this, UninstallCollectionInfoService.class);
 		startService(service);
 		SMSSDK.initSDK(this, "2803bd5b9e8c", "c478bc614fe371a4cfa978fa65921554");
-		SDKInitializer.initialize(getApplicationContext());
 	}
 
 	/**

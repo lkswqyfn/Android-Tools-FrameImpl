@@ -6,6 +6,8 @@ import java.util.List;
 import android.content.ContentValues;
 import android.test.AndroidTestCase;
 
+import com.example.frameimpl.util.APNUtil;
+
 public class FrameImplTest extends AndroidTestCase {
 		public void testAnnotation(){
 			BeanTest test = new BeanTest();
@@ -24,5 +26,11 @@ public class FrameImplTest extends AndroidTestCase {
 			test.info();
 			list.add("cdcdfv");
 			test.info();
+		}
+		
+		public void testAPN(){
+			System.out.println(APNUtil.checkProxy(getContext()));
+			System.out.println(APNUtil.getAPNName(getContext()));
+			System.out.println(APNUtil.getProxyHost(getContext()));
 		}
 }

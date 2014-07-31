@@ -2,7 +2,6 @@ package com.example.frameimpl.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ public class Bule extends BaseFragment {
 //		Red f = new Red();
 //		Green f = new Green();
 		f.fragmentPendingTransition(enterAnim, exitAnim);
-		getActivity().ChangeView(f, R.id.ooxx, false, true);
+		getActivity().ChangeView(f, R.id.ooxx, true, true);
 		
 //		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //		transaction.replace(R.id.ooxx, f);

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.example.frameimpl.activity.Main;
 import com.example.frameimpl.util.LogUtils;
 import com.example.frameimpl.util.MemoryUtils;
@@ -23,6 +24,7 @@ public class ApplicationImpl extends Application implements UncaughtExceptionHan
 	@Override
 	public void onCreate() {
 		Thread.setDefaultUncaughtExceptionHandler(this);
+		SDKInitializer.initialize(this);
 		super.onCreate();
 		instance = this;
 		initLog();
