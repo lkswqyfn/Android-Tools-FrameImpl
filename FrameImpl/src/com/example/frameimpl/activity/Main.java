@@ -3,8 +3,7 @@ package com.example.frameimpl.activity;
 import android.os.Bundle;
 
 import com.example.frameimpl.R;
-import com.example.frameimpl.fragment.Green;
-import com.example.frameimpl.test.LockDao;
+import com.example.frameimpl.fragment.SnakeFragment;
 
 public class Main extends BaseActivity {
 
@@ -16,33 +15,10 @@ public class Main extends BaseActivity {
 	@Override
 	public void initActivity() {
 		setContentView(R.layout.activity_main);
-		Green f = new Green();
+		SnakeFragment f = new SnakeFragment();
 		ChangeView(f, R.id.ooxx, false, false);
-		new Thread(){
-			public void run() {
-				LockDao.getInstance(getBaseContext()).write();
-			};
-		}.start();
-		new Thread(){
-			public void run() {
-				LockDao.getInstance(getBaseContext()).write();
-			};
-		}.start();
-		new Thread(){
-			public void run() {
-				LockDao.getInstance(getBaseContext()).read(1);
-			};
-		}.start();
-		new Thread(){
-			public void run() {
-				LockDao.getInstance(getBaseContext()).read(2);
-			};
-		}.start();
-		new Thread(){
-			public void run() {
-				LockDao.getInstance(getBaseContext()).read(3);
-			};
-		}.start();
+		
+		
 /*		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.ooxx, f);
 		transaction.commit();*/
