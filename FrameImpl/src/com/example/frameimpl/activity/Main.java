@@ -3,10 +3,9 @@ package com.example.frameimpl.activity;
 import android.os.Bundle;
 
 import com.example.frameimpl.R;
-import com.example.frameimpl.fragment.SnakeFragment;
+import com.example.frameimpl.fragment.ViewAnnoFragment;
 
 public class Main extends BaseActivity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -15,9 +14,8 @@ public class Main extends BaseActivity {
 	@Override
 	public void initActivity() {
 		setContentView(R.layout.activity_main);
-		SnakeFragment f = new SnakeFragment();
+		ViewAnnoFragment f = new ViewAnnoFragment();
 		ChangeView(f, R.id.ooxx, false, false);
-		
 		
 /*		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.ooxx, f);
@@ -33,6 +31,7 @@ public class Main extends BaseActivity {
 
 	@Override
 	public void initView() {
+//		ViewUtil.initViewByAnnotation(getWindow().getDecorView(), this);
 	}
 
 	@Override
