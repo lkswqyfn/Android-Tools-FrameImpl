@@ -16,7 +16,12 @@ public class Main extends BaseActivity {
 		setContentView(R.layout.activity_main);
 		ViewAnnoFragment f = new ViewAnnoFragment();
 		ChangeView(f, R.id.ooxx, false, false);
+//		ShortCutUtil.deleteShortCut(getApplicationContext(), "FrameImpl", getClass());
 		
+//		ShortCutUtil.hideDesktopIcon(this);
+		
+//		ShortCutUtil.creatShortCut(getApplicationContext(), "iii", R.drawable.ic_launcher, getClass());
+//		System.out.println(ShortCutUtil.hasShortcut(getApplicationContext(), "FrameImpl"));
 /*		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.ooxx, f);
 		transaction.commit();*/
