@@ -66,7 +66,7 @@ public final class BeepManager implements
     }
   }
 
-  synchronized void playBeepSoundAndVibrate() {
+  public synchronized void playBeepSoundAndVibrate() {
     if (playBeep && mediaPlayer != null) {
       mediaPlayer.start();
     }

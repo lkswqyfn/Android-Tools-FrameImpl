@@ -41,18 +41,18 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 				break;
 			case ConstantValue.ID_decode_succeeded:
 				Bundle bundle = msg.getData();
-		        Bitmap barcode = null;
-		        float scaleFactor = 1.0f;
-		        if (bundle != null) {
-		          byte[] compressedBitmap = bundle.getByteArray(DecodeThread.BARCODE_BITMAP);
-		          if (compressedBitmap != null) {
-		            barcode = BitmapFactory.decodeByteArray(compressedBitmap, 0, compressedBitmap.length, null);
-		            // Mutable copy:
-		            barcode = barcode.copy(Bitmap.Config.ARGB_8888, true);
-		          }
-		          scaleFactor = bundle.getFloat(DecodeThread.BARCODE_SCALED_FACTOR);          
-		        }
-		        handleDecode((Result) msg.obj, barcode, scaleFactor);
+				Bitmap barcode = null;
+				float scaleFactor = 1.0f;
+				if (bundle != null) {
+					byte[] compressedBitmap = bundle.getByteArray(DecodeThread.BARCODE_BITMAP);
+					if (compressedBitmap != null) {
+						barcode = BitmapFactory.decodeByteArray(compressedBitmap, 0, compressedBitmap.length, null);
+						// Mutable copy:
+						barcode = barcode.copy(Bitmap.Config.ARGB_8888, true);
+					}
+					scaleFactor = bundle.getFloat(DecodeThread.BARCODE_SCALED_FACTOR);
+				}
+				handleDecode((Result) msg.obj, barcode, scaleFactor);
 				break;
 			case ConstantValue.ID_decode_failed:
 				cameraManager.requestPreviewFrame(decodeThread.getHandler(), ConstantValue.ID_decode);
@@ -68,11 +68,12 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 	private CameraManager cameraManager;
 	private boolean hasSurface;
 	private DecodeThread decodeThread;
+	private Result lastResult;
+	private boolean hasResult;
 
 	@Override
 	public void onClick(View v) {
 	}
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,12 +98,11 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 		beepManager = new BeepManager(getActivity());
 		ambientLightManager = new AmbientLightManager(getActivity());
 		cameraManager = new CameraManager(getActivity());
-		decodeThread = new DecodeThread(this, null, null, null,
-		        new ResultPointCallback() {
-					@Override
-					public void foundPossibleResultPoint(ResultPoint arg0) {
-					}
-				});
+		decodeThread = new DecodeThread(this, null, null, null, new ResultPointCallback() {
+			@Override
+			public void foundPossibleResultPoint(ResultPoint arg0) {
+			}
+		});
 		hasSurface = false;
 	}
 
@@ -137,13 +137,19 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 
 	@Override
 	public boolean OnBackPressed() {
-		inactivityTimer.shutdown();
-		return super.OnBackPressed();
+		if (hasResult){
+			hasResult = false;
+			mHandler.sendEmptyMessage(ConstantValue.ID_restart_preview);
+			return true;
+		}else {
+			inactivityTimer.shutdown();
+			return super.OnBackPressed();
+		}
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder surfaceHolder) {
-		if (!hasSurface){
+		if (!hasSurface) {
 			hasSurface = true;
 			initCamera(surfaceHolder);
 		}
@@ -160,9 +166,9 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 
 		try {
 			cameraManager.openDriver(surfaceHolder);
-			 decodeThread.start();
-			 cameraManager.startPreview();
-			 mHandler.sendEmptyMessage(ConstantValue.ID_restart_preview);
+			decodeThread.start();
+			cameraManager.startPreview();
+			mHandler.sendEmptyMessage(ConstantValue.ID_restart_preview);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -187,7 +193,14 @@ public class ZXingCameraFragment extends BaseFragment implements SurfaceHolder.C
 		return mHandler;
 	}
 
-	protected void handleDecode(Result obj, Bitmap barcode, float scaleFactor) {
-		
+	protected void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
+		inactivityTimer.onActivity();
+		lastResult = rawResult;
+		boolean fromLiveScan = barcode != null;
+		if (fromLiveScan) {
+			beepManager.playBeepSoundAndVibrate();
+			hasResult = true;
+			System.out.println(rawResult.getText());
+		}
 	}
 }
