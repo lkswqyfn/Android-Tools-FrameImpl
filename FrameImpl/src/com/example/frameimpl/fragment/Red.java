@@ -21,7 +21,7 @@ public class Red extends BaseFragment {
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == 33) {
-			Bule f = new Bule();
+			ZXingCameraFragment f = new ZXingCameraFragment();
 			getActivity().ChangeView(f, R.id.ooxx, false, false);
 		} else {
 			RegisterPage registerPage = new RegisterPage();

@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+       <SurfaceView 
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/sv_camera"
+           />
+       
+       <FrameLayout 
+           android:id="@+id/fl_frame"
+           android:layout_centerInParent="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           >
+           
+           <ImageView 
+               android:src="@drawable/scan_image_bg"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               />
+           
+           <ImageView 
+               android:id="@+id/iv_scan_line"
+               android:src="@drawable/scan_line"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               />
+           
+       </FrameLayout>
+    
+</RelativeLayout>

@@ -3,7 +3,7 @@ package com.example.frameimpl.activity;
 import android.os.Bundle;
 
 import com.example.frameimpl.R;
-import com.example.frameimpl.fragment.ViewAnnoFragment;
+import com.example.frameimpl.fragment.Red;
 
 public class Main extends BaseActivity {
 	@Override
@@ -14,7 +14,7 @@ public class Main extends BaseActivity {
 	@Override
 	public void initActivity() {
 		setContentView(R.layout.activity_main);
-		ViewAnnoFragment f = new ViewAnnoFragment();
+		Red f = new Red();
 		ChangeView(f, R.id.ooxx, false, false);
 //		ShortCutUtil.deleteShortCut(getApplicationContext(), "FrameImpl", getClass());
 		

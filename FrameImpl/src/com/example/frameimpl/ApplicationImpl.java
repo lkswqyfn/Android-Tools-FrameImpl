@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 
+import cn.bmob.v3.Bmob;
+
 import com.baidu.mapapi.SDKInitializer;
 import com.example.frameimpl.activity.Main;
 import com.example.frameimpl.util.LogUtils;
@@ -24,6 +26,7 @@ public class ApplicationImpl extends Application implements UncaughtExceptionHan
 	@Override
 	public void onCreate() {
 		Thread.setDefaultUncaughtExceptionHandler(this);
+		Bmob.initialize(this, "e080b0523b300dc04edd860ba38516d5");
 		SDKInitializer.initialize(this);
 		super.onCreate();
 		instance = this;

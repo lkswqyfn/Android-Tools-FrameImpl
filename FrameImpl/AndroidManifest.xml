@@ -13,6 +13,7 @@
         android:label="Test for frameimpl"
         android:targetPackage="com.example.frameimpl" />
 
+    
     <uses-permission android:name="android.hardware.sensor.accelerometer"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
